@@ -28,12 +28,12 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll() // Разрешить доступ к статическим ресурсам
-                        .requestMatchers("/api/v1/exchange_rates/welcome", "/api/v1/exchange_rates/add_user").permitAll() // Разрешить доступ к определённым публичным страницам
-                        .anyRequest().authenticated()) // Все остальные запросы требуют аутентификации
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll) // Разрешить доступ ко всем к стандартной странице входа
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                        .requestMatchers("/api/v1/exchange_rates/welcome", "/api/v1/exchange_rates/add_user").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .logout(logout -> logout
-                        .permitAll()) // Разрешить выход для всех
+                        .permitAll())
                 .build();
     }
 
