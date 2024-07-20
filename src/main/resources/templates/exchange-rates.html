@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="converter-container">
+    <h1>Конвертер валют</h1>
+    <form id="converter-form" action="/api/v1/exchange_rates/convert" method="get">
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+        </div>
+        <div class="form-group">
+            <label for="from">From:</label>
+            <select id="from" name="from" required>
+                <th:block th:each="currency : ${currencies}">
+                    <option th:value="${currency}" th:text="${currency}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="to">To:</label>
+            <select id="to" name="to" required>
+                <th:block th:each="currency : ${currencies}">
+                    <option th:value="${currency}" th:text="${currency}"></option>
+                </th:block>
+            </select>
+        </div>
+        <button type="submit">Конвертировать</button>
+    </form>
+    <div id="conversion-result"></div>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+</html>
